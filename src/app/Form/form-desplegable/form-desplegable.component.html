@@ -1,0 +1,17 @@
+<form [formGroup]='desplegableOpt' (ngSubmit)='recivingTheForm(Options)' #Options='ngForm'>
+  <div class="form-group">
+    <label>Introduzca su Pregunta</label>
+    <input type="text" class="form-control" formControlName='question' placeholder="Aqui va su pregunta">
+  </div>
+  <div class="input-groub mb-3">
+    <select class="custom-select" formControlName='optControl'>
+      <option [ngValue]="option" *ngFor='let option of options'>{{option.name}}</option>
+    </select>
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-secondary" (click)='addNewOption(name.value)'>Agregue Opcion</button>
+    </div>
+    <input type="text" class="form-control" placeholder="añada opcion" #name>
+  </div>
+</form>

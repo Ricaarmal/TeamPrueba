@@ -1,0 +1,21 @@
+<form [formGroup]='questionOption' (ngSubmit)='recivingTheForm(allOptions)' #allOptions='ngForm'>
+  <div class="form-group">
+
+    <label>Introduzca su Pregunta</label>
+    <input type="text" class="form-control" formControlName='question'>
+    <div class="input-group mb-3 spacing" formArrayName='questionsOptions'>
+      <div class="input-group-prepend" *ngFor='let questionOptions of questionOption.controls.questionsOptions.controls; let i = index'
+        [formGroupName]='i'>
+        <div class="input-group-text">
+          <input type="checkbox" formControlName='checkbox'>
+        </div>
+        <input type="text" class="form-control" placeholder="Opcion {{i+1}}" formControlName='checkboxText'>
+        <button *ngIf='questionOption.controls.questionsOptions.controls.length > 1' class="btn btn-danger" (click)='deleteOption(i)'>Borrar</button>
+      </div>
+    </div>
+  </div>
+
+  <button class="circle" (click)='addOption()'>
+    <fa-icon [icon]="faPlus"></fa-icon>
+  </button>
+</form>

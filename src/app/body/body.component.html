@@ -1,0 +1,64 @@
+<nav class="navbar navbar-ligth bg-info">
+  <div class="nav container">
+    <div>
+      <button (click)='addQuestionDot()' class="btn btn-ligth">
+        Texto (1)
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-ligth">
+        Casillas (1)
+      </button>
+    </div>
+    <div>
+      <button class="btn btn-ligth">
+        Desplegable (1)
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="container border">
+  <div class="form-group space" (mouseleave)='hideButton()' (mouseenter)='showButton()'>
+    <h2 class="point">{{title}}</h2>
+    <button type="button" class="circle" (click)="showModal()" *ngIf='buttonEdit'>
+      <fa-icon [icon]="faPen"></fa-icon>
+    </button>
+  </div>
+
+  <div class="container space">
+    <app-form></app-form>
+  </div>
+  <div class="container">
+    <app-form-casillas></app-form-casillas>
+  </div>
+  <div class="container">
+    <app-form-desplegable></app-form-desplegable>
+  </div>
+
+  <div class='container space'>
+    <button class="btn btn-success">Siguiente</button>
+  </div>
+
+  <div class="modal fade" bsModal #modal="bs-modal" tabindex="-1" (onShow)="handler('onShow', $event)" (onShown)="handler('onShown', $event)"
+    (onHide)="handler('onHide', $event)" (onHidden)="handler('onHidden', $event)">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-events-name" class="modal-title pull-left">Cambiar Titulo</h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="modal.hide()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <label for="exampleInputEmail1">Introduzca nuevo titulo</label>
+          <input type="text" class="form-control" placeholder="{{title}}" [(ngModel)]='newTitle'>
+          <div class="form-group">
+            <label>Descripcion</label>
+            <textarea [(ngModel)]='descripcion' placeholder="{{descripcion}}" rows="3" class="form-control"></textarea>
+            <button type="submit" class="btn btn-primary margin-top" (click)='changeTitle()'>Cambiar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

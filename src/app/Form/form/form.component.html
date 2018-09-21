@@ -1,0 +1,14 @@
+<form [formGroup]='questionText' (ngSubmit)='submitForm(allQuestions)' #allQuestions='ngForm'>
+  <div class="form-group" formArrayName='questionsTexts'>
+    <div *ngFor='let questionTexts of questionText.controls.questionsTexts.controls; let i = index' [formGroupName]='i'>
+      <div class="form-group">
+        <input type="text" formControlName='question' class="form-control" placeholder="Haga su pregunta Aquí">
+      </div>
+      <div class="form-group">
+        <input type="text" formControlName='answer' class="form-control" placeholder="Escriba Aqui">
+      </div>
+    </div>
+    <button class="btn btn-danger" *ngIf='questionText.controls.questionsTexts.controls.length > 1' (click)='deleteQuestion(i)'>Delete
+      Question</button>
+  </div>
+</form>
